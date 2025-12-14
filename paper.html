@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سلكني.ma - المحضر</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="quiz-page">
+
+    <div class="interrogation-room">
+        <div class="lamp-light"></div>
+
+        <div class="quiz-container" style="max-width: 900px;">
+            
+            <div id="form-stage">
+                <header class="quiz-header">
+                    <h1>📝 استمارة فتح ملف رسمي</h1>
+                    <p>المحامي <span id="lawyer-name-display" style="color:#ffeb3b;">...</span> كيتسناك.</p>
+                </header>
+
+                <form id="final-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" id="client-name" placeholder="الاسم والنسب" required>
+                        </div>
+                        <div class="input-group">
+                            <label>رقم البطاقة (CIN)</label>
+                            <input type="text" id="client-cin" placeholder="EE123456" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>المهنة</label>
+                            <input type="text" id="client-job" placeholder="اش كدير؟" required>
+                        </div>
+                        <div class="input-group">
+                            <label>السن</label>
+                            <input type="number" id="client-age" placeholder="العمر" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>المدينة</label>
+                            <select id="client-city" required>
+                                <option value="">فين ساكن؟</option>
+                                <option value="الدار البيضاء">الدار البيضاء</option>
+                                <option value="الرباط">الرباط</option>
+                                <option value="مراكش">مراكش</option>
+                                <option value="فاس">فاس</option>
+                                <option value="طنجة">طنجة</option>
+                                <option value="ورزازات">ورزازات</option>
+                                <option value="أخرى">مدينة أخرى</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="client-phone" placeholder="06..." required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>تفاصيل الكارثة</label>
+                        <textarea id="client-case" rows="3" placeholder="كتب هنا شنو وقع..." required></textarea>
+                    </div>
+
+                    <div class="rachwa-container">
+                        <label>شحال ناوي تدفع "قهوة"؟</label>
+                        <div class="rachwa-amount">0 DH</div>
+                        <input type="range" id="rachwa-slider" min="0" max="10000" step="100" value="0">
+                        <div class="rachwa-status" id="rachwa-text">❌ والو: سير شد النوبة.</div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">✅ المصادقة واستخراج PDF</button>
+                </form>
+            </div>
+
+            <div id="receipt-stage" class="hidden">
+                <div class="receipt-paper" id="printable-area">
+                    <div id="official-stamp" class="hidden">
+                        <div class="stamp-inner">
+                            <span>المملكة المغربية</span>
+                            <span>★ مصادق عليه ★</span>
+                            <span>EGALISÉ</span>
+                            <span id="stamp-date"></span>
+                        </div>
+                    </div>
+                    <div class="paper-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Coat_of_arms_of_Morocco.svg/1200px-Coat_of_arms_of_Morocco.svg.png" class="logo-state" alt="Logo">
+                        <div class="header-text">
+                            <h3>المملكة المغربية</h3>
+                            <h4>وزارة الدفاع عن المتهمين</h4>
+                            <h5>مكتب الأستاذ: <span id="res-lawyer-header"></span></h5>
+                        </div>
+                        <img id="res-lawyer-img" src="" class="lawyer-stamp-img" alt="Avocat">
+                    </div>
+                    <hr class="double-line">
+                    
+                    <h2 class="receipt-title">محضر استلام قضية</h2>
+
+                    <div class="paper-body">
+                        <div class="section-box">
+                            <p><strong>الاسم الكامل:</strong> <span id="res-name"></span></p>
+                            <p><strong>رقم CIN:</strong> <span id="res-cin"></span></p>
+                            <p><strong>المهنة:</strong> <span id="res-job"></span></p>
+                            <p><strong>المدينة:</strong> <span id="res-city-display"></span></p>
+                        </div>
+
+                        <div class="section-box">
+                            <h4>تفاصيل النازلة:</h4>
+                            <p id="res-case-desc" class="handwritten-font"></p>
+                        </div>
+
+                        <div class="section-box">
+                            <h4>الفاتورة التقديرية:</h4>
+                            <table class="invoice-table">
+                                <tr><th>البيان</th><th>المبلغ</th></tr>
+                                <tr><td>فتح الملف</td><td>500 DH</td></tr>
+                                <tr><td>أتعاب الدفاع</td><td>5,000 DH</td></tr>
+                                <tr><td>الرشوة (المصرح بها)</td><td id="res-rachwa">0 DH</td></tr>
+                                <tr class="total-row"><td>المجموع الصافي</td><td id="res-total">---</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="paper-footer">
+                        <div class="signature">
+                            <p>توقيع المحامي:</p>
+                            <div class="sign-box" id="lawyer-sign"></div>
+                        </div>
+                        <div class="stamp-box">
+                            <div class="stamp-circle">تمت المصادقة<br>سلكني.ma</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="print-actions">
+                    <button onclick="addStamp()" class="print-btn" style="background:#d32f2f;">💮 صادق على الملف</button>
+                    
+                    <button onclick="window.print()" class="print-btn">🖨️ طباعة الورقة</button>
+                    <a href="home.html" class="restart-btn">رجوع للبداية</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="paper.js"></script>
+</body>
+</html>

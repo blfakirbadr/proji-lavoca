@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Salkni.ma - بورصة التدويرة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet"> </head>
+<body class="bourse-page">
+
+    <nav>
+        <div class="logo">📈 TSE (Tdwira Stock Exchange)</div>
+        <div class="nav-links">
+            <a href="home.html">الرئيسية</a>
+            <a href="#" class="active">البورصة</a>
+            <a href="vip.html" class="vip-nav-btn">👑 VIP</a>
+        </div>
+    </nav>
+
+    <div class="market-container">
+        
+        <header class="market-header">
+            <div class="market-status">
+                <span class="status-dot"></span> السوق: <span class="highlight">مفتوح (الفساد نشيط)</span>
+            </div>
+            <div class="market-time" id="market-time">00:00:00</div>
+        </header>
+
+        <div class="main-chart-section">
+            <div class="chart-header">
+                <h3>مؤشر "باك صاحبي" (BSI 30)</h3>
+                <h1 class="index-value" id="main-index">12,450.00 <span class="up">▲ 1.2%</span></h1>
+            </div>
+            <div class="graph-container">
+                <div class="graph-line"></div>
+                <div class="graph-grid"></div>
+            </div>
+        </div>
+
+        <div class="market-grid">
+            
+            <div class="market-card">
+                <h3>🔥 الأكثر تداولاً</h3>
+                <table class="ticker-table">
+                    <thead>
+                        <tr>
+                            <th>الخدمة (Asset)</th>
+                            <th>السعر (DH)</th>
+                            <th>التغيير</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticker-body">
+                        <tr>
+                            <td>☕ قهوة المقدم</td>
+                            <td class="price-cell">50.00</td>
+                            <td class="change-cell up">+5%</td>
+                        </tr>
+                        <tr>
+                            <td>🚔 مخالفة رادار</td>
+                            <td class="price-cell">200.00</td>
+                            <td class="change-cell down">-2%</td>
+                        </tr>
+                        <tr>
+                            <td>🏗️ رخصة بناء عشوائي</td>
+                            <td class="price-cell">5000.00</td>
+                            <td class="change-cell up">+10%</td>
+                        </tr>
+                        <tr>
+                            <td>📄 شهادة العزوبة (زور)</td>
+                            <td class="price-cell">150.00</td>
+                            <td class="change-cell down">-1%</td>
+                        </tr>
+                        <tr>
+                            <td>⚖️ البراءة (جنايات)</td>
+                            <td class="price-cell">50,000.00</td>
+                            <td class="change-cell stable">0%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="market-card news-card">
+                <h3>📰 شريط الأخبار المالي</h3>
+                <ul class="news-list">
+                    <li>🔴 <strong>عاجل:</strong> ارتفاع صاروخي في أسعار "القهوة" بسبب رمضان.</li>
+                    <li>📉 <strong>انهيار:</strong> سهم "الوساطة" ينخفض بعد القبض على مقدم الحي.</li>
+                    <li>💹 <strong>تحليل:</strong> استثمر الآن في "شهادات السكنى"، الطلب مرتفع!</li>
+                    <li>🤖 <strong>تكنولوجيا:</strong> "الحاج روبو" يدخل سوق الكريبتو بـ عملة "RachwaCoin".</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ساعة البورصة
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('market-time').innerText = now.toLocaleTimeString('en-GB');
+        }, 1000);
+
+        // تحريك الأسعار عشوائياً (Simulation)
+        function simulateMarket() {
+            const rows = document.querySelectorAll('#ticker-body tr');
+            
+            rows.forEach(row => {
+                const priceCell = row.querySelector('.price-cell');
+                const changeCell = row.querySelector('.change-cell');
+                
+                // سعر حالي
+                let currentPrice = parseFloat(priceCell.innerText.replace(',', ''));
+                
+                // تغيير عشوائي
+                const change = (Math.random() - 0.5) * (currentPrice * 0.05); // تغيير بـ 5%
+                let newPrice = currentPrice + change;
+                if(newPrice < 0) newPrice = 10; // ما يهبطش تحت الصفر
+
+                // تحديث العرض
+                priceCell.innerText = newPrice.toFixed(2);
+                
+                // اللون والسهم
+                if(change > 0) {
+                    priceCell.style.color = "#00ff41";
+                    changeCell.innerHTML = "▲ +" + Math.abs(change).toFixed(1) + "%";
+                    changeCell.className = "change-cell up";
+                } else {
+                    priceCell.style.color = "#ff4d4d";
+                    changeCell.innerHTML = "▼ -" + Math.abs(change).toFixed(1) + "%";
+                    changeCell.className = "change-cell down";
+                }
+            });
+
+            // تحريك المؤشر الكبير
+            const mainIndex = document.getElementById('main-index');
+            let val = parseFloat(mainIndex.innerText.replace(',', ''));
+            val += (Math.random() - 0.5) * 50;
+            mainIndex.innerHTML = val.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' <span class="' + (Math.random()>0.5?'up':'down') + '">' + (Math.random()>0.5?'▲':'▼') + ' 0.' + Math.floor(Math.random()*9) + '%</span>';
+        }
+
+        // تحديث كل 2 ثواني
+        setInterval(simulateMarket, 2000);
+    </script>
+</body>
+</html>

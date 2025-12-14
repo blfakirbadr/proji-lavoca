@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سلكني.ma - VIP Lounge</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="vip-page">
+
+    <div class="vip-container">
+        
+        <div id="scan-stage">
+            <div class="crown">👑</div>
+            <h1>مرحباً بك في المنطقة الذهبية</h1>
+            <p>هذا المكان مخصص فقط لأصحاب "الشكارة" والنافذين.</p>
+            <p class="instruction">المرجو وضع "الإبهام" للتحقق من الرصيد البنكي:</p>
+            
+            <div class="fingerprint-scanner" onclick="startScan()">
+                <div class="scan-line"></div>
+                <span class="finger-icon">👍</span>
+            </div>
+            <p id="scan-text" class="status-text">اضغط هنا لبدء الفحص...</p>
+        </div>
+
+        <div id="result-stage" class="hidden">
+            <div class="alert-icon">⚠️</div>
+            <h1 class="blink-red">تنبيه: فقر مدقع!</h1>
+            <div class="roast-msg">
+                <p>السيستيم ديالنا لقا فجيبك غير "الريال والتبغ".</p>
+                <p>واش باغي تدخل الـ VIP بـ 20 درهم روشارج؟</p>
+                <p class="big-text">سير تكمش مع الشعب!</p>
+            </div>
+            <button onclick="window.location.href='quiz.html'" class="shame-btn">العودة للواقع (الكويز)</button>
+        </div>
+
+    </div>
+
+    <script>
+        function startScan() {
+            const scanner = document.querySelector('.fingerprint-scanner');
+            const text = document.getElementById('scan-text');
+            const line = document.querySelector('.scan-line');
+            
+            // بداية السكانير
+            scanner.classList.add('scanning');
+            line.style.opacity = 1;
+            text.innerText = "جاري الاتصال بالأقمار الاصطناعية...";
+            
+            setTimeout(() => text.innerText = "جاري فحص الحسابات في سويسرا...", 1500);
+            setTimeout(() => text.innerText = "تحليل الممتلكات العقارية...", 3000);
+            setTimeout(() => text.innerText = "صبر.. كاين شي غلط...", 4500);
+            
+            // النتيجة الصادمة
+            setTimeout(() => {
+                document.getElementById('scan-stage').classList.add('hidden');
+                document.getElementById('result-stage').classList.remove('hidden');
+                document.body.style.background = "#330000"; // تبديل الخلفية للأحمر الغامق
+            }, 6000);
+        }
+    </script>
+</body>
+</html>

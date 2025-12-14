@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Salkni.ma - لوحة القيادة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"> </head>
+<body class="dashboard-page">
+
+    <nav>
+        <div class="logo">📊 Corruption Data</div>
+        <div class="nav-links">
+            <a href="home.html">الرئيسية</a>
+            <a href="#" class="active">الإحصائيات</a>
+            <a href="vip.html" class="vip-nav-btn">👑 VIP</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        
+        <header class="dash-header">
+            <h1>إحصائيات "الفساد" المباشرة 🔴</h1>
+            <div class="server-status">
+                <span class="blink-dot"></span> حالة السيرفر: <span style="color:#00ff41;">متصل بوزارة العدل (Hacked)</span>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">💸</div>
+                <h3>مجموع "القهوة" المدفوعة</h3>
+                <div class="number-counter" data-target="9845000">0</div>
+                <span class="unit">درهم مغربي</span>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🔓</div>
+                <h3>مجرمين تم إطلاق سراحهم</h3>
+                <div class="number-counter" data-target="1250">0</div>
+                <span class="unit">مواطن صالح</span>
+            </div>
+            <div class="stat-card">
+                <div class="icon">👮</div>
+                <h3>مقدمين تم شراؤهم</h3>
+                <div class="number-counter" data-target="340">0</div>
+                <span class="unit">عون سلطة</span>
+            </div>
+            <div class="stat-card alert-card">
+                <div class="icon">⚠️</div>
+                <h3>مذكرات بحث نشطة</h3>
+                <div class="number-counter" data-target="50">0</div>
+                <span class="unit">هربانين حالياً</span>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            
+            <div class="chart-box">
+                <h3>نسبة نجاح "التخريجات"</h3>
+                <div class="progress-container">
+                    <div class="progress-bar-wrap">
+                        <label>قضايا الطلاق</label>
+                        <div class="progress-track"><div class="progress-fill" style="width: 95%;">95%</div></div>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <label>حوادث السير</label>
+                        <div class="progress-track"><div class="progress-fill" style="width: 88%;">88%</div></div>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <label>التهرب الضريبي</label>
+                        <div class="progress-track"><div class="progress-fill" style="width: 99%;">99%</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h3>آخر التحويلات (Live)</h3>
+                <ul class="live-feed" id="live-feed">
+                    <li>[14:30] 🟢 تم دفع 200 درهم لـ "مقدم" فـ الدار البيضاء.</li>
+                    <li>[14:32] 🔴 سحب رخصة سياقة فـ مراكش (جاري التدخل...).</li>
+                    <li>[14:35] 🟢 الأستاذ بدر مسح سابقة عدلية لـ "حميد.م".</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. أنميشن الأرقام (Counter Up)
+        const counters = document.querySelectorAll('.number-counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const speed = 200; // السرعة
+
+            const updateCount = () => {
+                const count = +counter.innerText.replace(/,/g, '');
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc).toLocaleString();
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+            };
+            updateCount();
+        });
+
+        // 2. إضافة أخبار وهمية فـ Live Feed
+        const updates = [
+            "🟢 تم شراء ذمة 'شاهد زور' فـ طنجة.",
+            "⚠️ الشرطة تبحث عن 'سيارة سوداء' (ديالك).",
+            "🟢 تحويل 5000 درهم لحساب القاضي (عربون محبة).",
+            "🔴 رفض طلب فيزا (بدر كيحاول يقرصن القنصلية).",
+            "🟢 استخراج شهادة سكنى فـ 'المريخ'."
+        ];
+
+        setInterval(() => {
+            const list = document.getElementById('live-feed');
+            const item = document.createElement('li');
+            const randomUpdate = updates[Math.floor(Math.random() * updates.length)];
+            const time = new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
+            
+            item.innerHTML = `[${time}] ${randomUpdate}`;
+            item.style.animation = "slideIn 0.5s ease";
+            
+            list.prepend(item); // زيد الفوق
+            if(list.children.length > 5) list.lastElementChild.remove(); // مسح القديم
+        }, 3000);
+    </script>
+</body>
+</html>

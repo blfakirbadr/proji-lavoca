@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Salkni - The Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="audio-library" class="hidden">
+        <audio id="snd-gta" src="gta.mp3"></audio>
+        <audio id="snd-police" src="police.mp3" loop></audio>
+        <audio id="snd-matrix" src="matrix.mp3"></audio>
+        <audio id="snd-godfather" src="godfather.mp3"></audio>
+        <audio id="snd-crash" src="crash.mp3"></audio>
+        <audio id="snd-racing" src="racing.mp3" loop></audio>
+        <audio id="snd-door" src="door.mp3"></audio>
+    </div>
+
+    <div id="intro-screen">
+        <h1 class="glitch-text">سلكني.ma</h1>
+         <p>جاري تزوير المحاضر وطمس الأدلة.....</p>
+        <div class="loader"><div class="bar"></div></div>
+        
+        <button id="start-btn" class="hidden" style="
+            margin-top: 30px; padding: 15px 40px; 
+            font-size: 1.5rem; background: #00ff41; color: black; border: none; 
+            border-radius: 50px; cursor: pointer; font-weight: bold; 
+            box-shadow: 0 0 20px #00ff41; animation: pulse 1s infinite;">
+            🔊 اضغط هنا لبدء الفيلم
+        </button>
+    </div>
+
+    <div id="fade-overlay"></div>
+    <div id="flash-overlay"></div>
+
+    <div id="game-stage" class="hidden">
+        
+        <div id="scene-chase" class="scene">
+            <div class="layer sky"></div>
+            <div class="layer city"></div>
+            <div class="road-container"><div class="layer road"></div></div>
+            <div class="character runner" id="runner"></div>
+            <div class="character police" id="police"><div class="siren"></div></div>
+            <div id="giant-hand">🫳</div>
+                       <div class="bubble" id="msg-police">
+                🚨 "أحبس تما آ مول الفيراري! الرادار شدك كتجري بـ 200 كلم/ساعة بـ 'البلغة'! <br>
+                واش مخلص الضريبة على 'الزربة'؟ ولا غادي نديوك لـ 'الكوميسارية' نربيوك على احترام قانون الجاذبية!"
+            </div>
+        </div>
+
+        <div id="scene-matrix" class="scene hidden">
+            <canvas id="matrix-canvas"></canvas>
+            <div class="hero-avatar" id="badr-img"><img src="Tenor-unscreen.gif" alt="Badr"></div>
+            <div class="character runner-idle" id="runner-matrix"></div>
+             <div class="bubble" id="msg-badr">
+                "دخلتي لـ 'السيستيم' ديالي.. <br>
+                داك السكرين شوت لي خاف منو؟ راه رديناه 'فوتوشوب'.. <br>
+                دابا نتا بريء فعيون العالم، ولكن مدين ليا بـ 'بيتكوين' ولا شي طاجين بالبرقوق."
+            </div>
+        </div>
+
+        <div id="scene-salon" class="scene hidden">
+            <div class="salon-bg"></div>
+            <div class="hero-avatar" id="othman-img"><img src="Tenor-unscreen (1).gif" alt="Othman"></div>
+            <div class="character runner-idle" id="runner-salon"></div> 
+             <div class="bubble" id="msg-othman">
+                "يا لطيف! طحتي من السقف نيشان فـ الصينية؟ <br>
+                ما تخافش، هاد الدار أصلاً ما عندهاش مولاها.. الورثة مضاربين على 'السطح' من عام الفيل. <br>
+                ريح تكمش وشرب كاس د أتاي، المحكمة غتحكم فـ 2090 إن شاء الله."
+            </div>
+        </div>
+
+        <div id="scene-crash" class="scene hidden">
+            <div class="layer city"></div> 
+            <div class="road-container"><div class="layer road"></div></div>
+            <div class="character runner" id="runner-street"></div>
+            <div class="car-crash" id="incoming-car">🚗</div>
+            <div class="hero-avatar" id="stifa-img"><img src="Tenor-unscreen (2).gif" alt="Stifa"></div>
+            <div class="bubble" id="msg-stifa">
+                "ناري ناري! الطوموبيل رداتك 'كفتة' آ عشيري! 😱 <br>
+                ولكن هانية، صتيفا يخرجك منها 'شعرة من العجين'. <br>
+                غادي نجيبو 10 د الشهود يحلفو بلي الطوموبيل هي لي 'نقزات' عليك وكانت ناوية تسرق ليك 'الصرف'. <br>
+                غير وجد 'القهوة' تكون صحيحة!"
+            </div>
+            <div class="smoke">💥</div>
+        </div>
+
+        <div id="scene-door" class="scene hidden">
+            <div class="door" id="magic-door" onclick="enterOffice()" style="cursor: pointer;">🚪</div>
+            <h2 id="door-text" class="hidden" style="color:white; margin-bottom:20px; text-align:center;">كليكي على الباب باش تدخل للمكتب 👆</h2>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

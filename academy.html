@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Salkni Academy - تعلم التخلويض</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="academy-page">
+
+    <nav>
+        <div class="logo">🎓 Salkni Academy</div>
+        <div class="nav-links">
+            <a href="home.html">الرئيسية</a>
+            <a href="#" class="active">الدورات</a>
+            <a href="vip.html" class="vip-nav-btn">👑 VIP</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <header class="academy-hero">
+            <h1>طور مهاراتك في <span class="highlight">"عالم المراوغة"</span></h1>
+            <p>دورات تكوينية معتمدة من طرف "L’École Supérieure de Technologie d’Ouarzazate ". <br> احصل على دبلوم في "السليك" و "تخراج العينين".</p>
+            <div class="stats-row">
+                <span>👨‍🎓 +5000 خريج (فالحبس)</span>
+                <span>⭐ 4.9/5 تقييم</span>
+                <span>📜 شواهد مزورة</span>
+            </div>
+        </header>
+
+        <div class="courses-grid">
+            
+            <div class="course-card">
+                <div class="course-thumb">
+                    <span class="category-tag">تنمية بشرية</span>
+                    <img src="Tenor-unscreen.gif" alt="Badr">
+                </div>
+                <div class="course-content">
+                    <h3>🎭 ماستر كلاس: كيفاش تبكي قدام القاضي بلا دموع</h3>
+                    <div class="instructor">
+                        <img src="Tenor-unscreen.gif" class="inst-avatar">
+                        <span>المدرب: ذ. بدر</span>
+                    </div>
+                    <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+                    <p class="desc">تعلم فنون التمثيل الدرامي لاستعطاف المحكمة وتخفيف الحكم من المؤبد إلى "سير تروح".</p>
+                    <div class="course-footer">
+                        <span class="price">1000 DH</span>
+                        <button onclick="enrollCourse('cry')" class="enroll-btn">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-thumb">
+                    <span class="category-tag" style="background:#ffd700; color:black;">هندسة معمارية</span>
+                    <img src="Tenor-unscreen (1).gif" alt="Othman">
+                </div>
+                <div class="course-content">
+                    <h3>🏗️ التعامل مع "المقدم": استراتيجيات القهوة</h3>
+                    <div class="instructor">
+                        <img src="Tenor-unscreen (1).gif" class="inst-avatar">
+                        <span>المدرب: ذ. عثمان</span>
+                    </div>
+                    <div class="rating">⭐⭐⭐⭐⭐ (5.0)</div>
+                    <p class="desc">كيفاش تبني "ضالة" فالليل بلا ما يشوفك حد، وطرق حساب "التدويرة" حسب المساحة.</p>
+                    <div class="course-footer">
+                        <span class="price">2500 DH</span>
+                        <button onclick="enrollCourse('moqadem')" class="enroll-btn">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-thumb">
+                    <span class="category-tag" style="background:#ff0000;">فيزياء</span>
+                    <img src="Tenor-unscreen (2).gif" alt="Stifa">
+                </div>
+                <div class="course-content">
+                    <h3>🏎️ الديناميكا الهوائية للهروب من "الصطافيط"</h3>
+                    <div class="instructor">
+                        <img src="Tenor-unscreen (2).gif" class="inst-avatar">
+                        <span>المدرب: ذ. صتيفا</span>
+                    </div>
+                    <div class="rating">⭐⭐⭐⭐☆ (4.8)</div>
+                    <p class="desc">حساب زاوية الانعطاف فالدرب الضيق، وتقنيات "التخبع" مور الكماين.</p>
+                    <div class="course-footer">
+                        <span class="price">500 DH</span>
+                        <button onclick="enrollCourse('run')" class="enroll-btn">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-thumb">
+                    <span class="category-tag" style="background:purple;">لغات</span>
+                    <div class="emoji-thumb">🤐</div>
+                </div>
+                <div class="course-content">
+                    <h3>🙊 لغة "الغمز واللمز": التواصل الصامت</h3>
+                    <div class="instructor">
+                        <div class="inst-avatar-emoji">🤖</div>
+                        <span>المدرب: الحاج روبو</span>
+                    </div>
+                    <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+                    <p class="desc">تعلم كيفاش تتفاهم مع الموظف غير بـ "حاجبك" وبلا ما تهضر وتفضح راسك.</p>
+                    <div class="course-footer">
+                        <span class="price">300 DH</span>
+                        <button onclick="enrollCourse('wink')" class="enroll-btn">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="enroll-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">تهانينا! 🎉</h2>
+            <p id="modal-msg">راكوم غاديين فالخسران...</p>
+            <div class="loading-bar"><div class="progress"></div></div>
+            <button onclick="closeModal()" class="close-btn">صافي فهمت</button>
+        </div>
+    </div>
+
+    <script>
+        function enrollCourse(course) {
+            const modal = document.getElementById('enroll-modal');
+            const msg = document.getElementById('modal-msg');
+            const progress = document.querySelector('.progress');
+            
+            modal.classList.remove('hidden');
+            progress.style.width = "0%";
+            
+            // أنميشن التحميل
+            setTimeout(() => progress.style.width = "50%", 500);
+            setTimeout(() => progress.style.width = "100%", 1500);
+            
+            setTimeout(() => {
+                if(course === 'cry') msg.innerText = "تم رفض الطلب: وجهك قاصح بزاف وما كيجيش معاه البكا.";
+                else if(course === 'moqadem') msg.innerText = "تنبيه: خاصك تجيب معاك 2 كيلو سكر فالجلسة الأولى.";
+                else if(course === 'run') msg.innerText = "الدورة عامرة. (كلشي باغي يهرب).";
+                else msg.innerText = "خطأ فالأداء: رصيدك من 'الحسنات' غير كافي.";
+            }, 1600);
+        }
+
+        function closeModal() {
+            document.getElementById('enroll-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
